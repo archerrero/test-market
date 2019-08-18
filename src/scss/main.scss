@@ -1,0 +1,91 @@
+
+body {
+  display: flex;
+
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.aside {
+  width: 30%;
+}
+
+.item-list {
+  
+  &--i {
+    display: flex;
+    list-style: none;
+
+    &--info-wrapper {
+      
+    }
+
+    &--order-wrapper {
+
+    }
+
+    
+    &--image {
+      width: 200px;
+    }
+    
+    &--header {
+
+    }
+
+    &--price {
+
+    }
+
+    &--decs {
+
+    }
+
+    
+    &--button {
+
+    }
+
+    &--ordered-count {
+
+      &.hide {
+        display: none;
+      }
+    }
+  }
+}
+
+.pagination {
+  &--list{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+
+    &--i {
+
+    }
+  }
+
+  &--button {
+
+  }
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+
+  &--i {
+    display: flex;
+
+    &.unaviable {
+      opacity: .5;
+    }
+  }
+
+  &--img {
+    width: 100px;
+  }
+}
