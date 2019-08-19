@@ -4,12 +4,19 @@ import Cart from './cart';
 import { 
   createItem,
   createCount,
+  createPagination,
 } from './creaters';
 
 const cartWrapper = document.querySelector('.aside-cart');
 const cart = new Cart();
 const productList = document.querySelector('.item-list');
+const paginationList = document.querySelector('.pagination--list');
 const itemsPerPage = 15;
+let page = 1;
+
+if (window.location.search) {
+  page = Number(window.location.search.replace('?page=',''))
+}
 
 function addToCart(id, element) {
   cart.add(id)
@@ -19,8 +26,10 @@ function addToCart(id, element) {
   cartWrapper.innerHTML = cart.createCartItems();
 }
 
-function deleteFromCart(index) {
+function deleteFromCart(index, id) {
+  let counter = document.querySelector(`.js_item_count_${id}`);
   cart.delete(index);
+  counter.innerHTML = createCount(id, 0);
   cartWrapper.innerHTML = cart.createCartItems();
 }
 
@@ -41,10 +50,33 @@ function initItems({
   productList.innerHTML = res;
 }
 
-initItems({page:1, itemsPerPage});
+initItems({page, itemsPerPage});
+
+function sortBy(sortedBy) {
+  let val = (sortedBy == 'available' ? -1 : 1);
+  console.log(sortedBy, -val)
+
+  items.sort((a, b) => {
+    // console.log(a[sortedBy] > b[sortedBy], a[sortedBy] , b[sortedBy])
+    
+    if (a[sortedBy] > b[sortedBy]) return val;
+    if (a[sortedBy] < b[sortedBy]) return -val;
+    return 0;
+  })
+
+  initItems({page: 1, itemsPerPage});
+}
+
+paginationList.innerHTML = createPagination({
+  itemsLength: 3000,
+  itemsPerPage: 15,
+  page 
+});
 
 cartWrapper.innerHTML = cart.createCartItems();
 
 window.addToCart = addToCart;
 window.deleteFromCart = deleteFromCart;
+window.sortBy = sortBy;
+
 export { addToCart }

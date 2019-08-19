@@ -46,32 +46,32 @@ class Cart {
     let totalPrice = 0;
 
     this.cartData.forEach((cartItem, i) => {      
-      let { image, title, price, available } = getItemById(cartItem.id, items)
+      let { id, image, title, price, available } = getItemById(cartItem.id, items)
 
       totalPrice += available ? price * cartItem.count : 0;
       
       res += `
-      <li class="cart-list--i ${available ? '' : 'unaviable'}">
+      <li class="cart-list--i ${available ? '' : 'unavailable'}">
         <img src="${image}" alt="${title}" class="cart-list--img">
-        <div class="cart-list--img">
+        <div class="cart-list--info-wrapper">
           <p>${title}</p>
-          <p>${price} рублей</p>
+          <p>${available ? price + 'рублей' : 'нет в наличии'}</p>
         </div>
-        <p>x${cartItem.count}</p>
+        <p class="cart-list--count">x${cartItem.count}</p>
         <button 
-          onclick="deleteFromCart(${i})">
+          class="cart-list--del"
+          onclick="deleteFromCart(${i}, ${id})">
           ×
         </button>
       </li>
       `;
     })
     res += '</ul>';
-    res += `<div>Итого  ${totalPrice} рублей</div>`;
+    res += `<div class="cart-list--total">Итого  ${totalPrice} рублей</div>`;
     return res;
   }
 
   delete(index) {
-    console.log(index)
     this.cartData.splice(index, 1); 
     this.save();
   }

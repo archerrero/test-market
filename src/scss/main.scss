@@ -1,51 +1,67 @@
 
 body {
   display: flex;
-
+  font-family: sans-serif;
+  background: #eee;
 }
 
 .main {
   flex-grow: 1;
+  padding: 16px;
 }
 
 .aside {
   width: 30%;
+  padding: 16px;
+
+  &-cart {
+
+    position: sticky;
+    top: 0;
+  }
 }
 
 .item-list {
+  padding: 0;
   
   &--i {
     display: flex;
     list-style: none;
+    background: #fff;
+    padding: 16px;
+    margin-bottom: 8px;
 
     &--info-wrapper {
-      
+      flex-grow: 1;
     }
 
     &--order-wrapper {
-
+      flex-basis: 0;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
 
     
     &--image {
-      width: 200px;
+      width: 100px;
+      margin-right: 16px;
     }
-    
-    &--header {
-
-    }
-
-    &--price {
-
-    }
-
-    &--decs {
-
-    }
-
-    
+       
     &--button {
+      border: 1px solid #0093ff;
+      background: #0093ff;
+      color: #fff;
+      padding: 16px;
+      cursor: pointer;
+      width: 100%;
 
+      &[disabled] {
+        background: #eee;
+        color: #000;
+        cursor: default;
+      }
     }
 
     &--ordered-count {
@@ -58,18 +74,24 @@ body {
 }
 
 .pagination {
+
   &--list{
     display: flex;
     flex-direction: row;
     list-style: none;
+    padding: 0;
 
     &--i {
+      margin: 0 8px;
 
     }
   }
 
   &--button {
-
+    padding: 8px;
+    display: block;
+    text-decoration: none;
+    background: #fff;
   }
 }
 
@@ -79,13 +101,53 @@ body {
 
   &--i {
     display: flex;
+    list-style: none;
+    background: #fff;
+    padding: 16px;
+    margin-bottom: 8px;
+    align-items: center;
 
-    &.unaviable {
+    &.unavailable {
       opacity: .5;
     }
   }
 
   &--img {
     width: 100px;
+    height: auto;
+  }
+
+  &--info-wrapper {
+    flex-grow: 1;
+  }
+  &--count {
+    padding: 16px;
+  }
+
+  &--del {
+    border: 1px solid #eee;
+    padding: 16px;
+    cursor: pointer;
+  }
+
+  &--total {
+    padding: 16px;
+    background: #fff;
+  }
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+
+  &-list {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+
+    &--i {
+      padding: 8px;
+      cursor: pointer;
+    }
   }
 }

@@ -48,11 +48,39 @@ function createCount(id, count) {
   </p>` : '';
 }
 
-function createPagination() {
-  return ``;
+function createPagination({
+  itemsLength = 3000,
+  itemsPerPage = 15,
+  page = 1,
+}) {
+  let pages = itemsLength / itemsPerPage;
+  let res = `
+  <li class="pagination--list--i">
+    <a href="?page=1"  class="pagination--button">
+      <
+    </a>
+  </li>`; 
+
+  for (let index = 0; index < pages; index++) {
+    if (!(index > page - 5 && index < page + 5)) continue
+    res += `
+    <li class="pagination--list--i">
+      <a href="?page=${index + 1}"  class="pagination--button">
+        ${index + 1}
+      </a>
+    </li>`; 
+  }
+  res += `
+  <li class="pagination--list--i">
+    <a href="?page=${pages}"  class="pagination--button">
+      >
+    </a>
+  </li>`; 
+  return res;
 }
 
 export { 
   createItem,
-  createCount
+  createCount,
+  createPagination
 }
