@@ -22,14 +22,14 @@ function addToCart(id, element) {
   cart.add(id)
   let count = cart.getCartItemById(id).count;
   let counter = document.querySelector(`.js_item_count_${id}`);
-  counter.innerHTML = createCount(id, count);
+  if(counter) counter.innerHTML = createCount(id, count);
   cartWrapper.innerHTML = cart.createCartItems();
 }
 
 function deleteFromCart(index, id) {
   let counter = document.querySelector(`.js_item_count_${id}`);
-  cart.delete(index);
-  counter.innerHTML = createCount(id, 0);
+  cart.delete(id);
+  if(counter) counter.innerHTML = createCount(id, 0);
   cartWrapper.innerHTML = cart.createCartItems();
 }
 
@@ -50,15 +50,10 @@ function initItems({
   productList.innerHTML = res;
 }
 
-initItems({page, itemsPerPage});
-
 function sortBy(sortedBy) {
   let val = (sortedBy == 'available' ? -1 : 1);
-  console.log(sortedBy, -val)
 
-  items.sort((a, b) => {
-    // console.log(a[sortedBy] > b[sortedBy], a[sortedBy] , b[sortedBy])
-    
+  items.sort((a, b) => {    
     if (a[sortedBy] > b[sortedBy]) return val;
     if (a[sortedBy] < b[sortedBy]) return -val;
     return 0;
@@ -66,6 +61,8 @@ function sortBy(sortedBy) {
 
   initItems({page: 1, itemsPerPage});
 }
+
+initItems({page, itemsPerPage});
 
 paginationList.innerHTML = createPagination({
   itemsLength: 3000,

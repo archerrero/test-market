@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test work</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  
+  <section class="main">
+    <h1>Тестовое задание</h1>
+    <div class="sort">
+      <p>сортировать по:</p>
+      <ul class="sort-list">
+        <li 
+          class="sort-list--i"
+          onclick="sortBy('title')">
+          названию
+        </li>
+        <li 
+          class="sort-list--i"
+          onclick="sortBy('price')">
+          цене
+        </li>
+        <li 
+          class="sort-list--i"
+          onclick="sortBy('available')">
+          наличию
+        </li>
+        <li 
+          class="sort-list--i"
+          onclick="sortBy('id')">
+          сбросить
+        </li>
+      </ul>
+    </div>
+
+    <ul class="item-list"></ul>
+
+    <nav class="pagination">
+
+      <ul class="pagination--list"></ul>
+    </nav>
+  </section>
+
+  <aside class="aside">
+    <h2>Корзина</h2>
+
+    <div class="aside-cart"></div>
+
+  </aside>
+
+
+  
+<script type="text/javascript" src="main.23aac7f79c71eac7d25c.js"></script></body>
+</html>

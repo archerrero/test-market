@@ -1,7 +1,8 @@
 import { 
   saveToStorage,
   getFromStorage,
-  getItemById
+  getItemById,
+  getIndexById
 } from './helpers';
 
 import items from './items';
@@ -11,8 +12,6 @@ class Cart {
   constructor() {
     this.storageName = 'cart';
     this.cartData = getFromStorage(this.storageName) || Array();
-
-    console.log(this.cartData)
   }
 
   add(id) {
@@ -71,8 +70,8 @@ class Cart {
     return res;
   }
 
-  delete(index) {
-    this.cartData.splice(index, 1); 
+  delete(id) {
+    this.cartData.splice(getIndexById(id, this.cartData), 1); 
     this.save();
   }
 } 

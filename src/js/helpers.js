@@ -6,9 +6,9 @@ function getFromStorage(name) {
   return JSON.parse(localStorage.getItem(name));
 }
 
-function getItemById(id, items) {
+function getItemById(id, array) {
   let res = null;
-  items.forEach(item => {
+  array.forEach(item => {
     if (id == item.id) {
       res = item;
     }
@@ -20,9 +20,20 @@ function declOfNum(number, titles) {
   let cases = [2, 0, 1, 1, 1, 2];  
   return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
 }
+
+function getIndexById(id, array) {
+  let index = null;
+  array.forEach((item, i) => {
+    if (id == item.id) {
+      index = i;
+    }
+  });
+  return index;
+}
 export { 
   saveToStorage,
   getFromStorage,
   getItemById,
   declOfNum,
+  getIndexById,
 }

@@ -4,8 +4,8 @@ import {
 } from './helpers';
 import Cart from './cart';
 
-
 const cart = new Cart();
+
 function createItem({
   id = 1,
   title = 'Стул 1',
